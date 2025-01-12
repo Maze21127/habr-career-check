@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "habr-career-check"
+version = "0.1.0"
+description = ""
+authors = ["Vladimir Kul'kov <kulkov.vk@dns-shop.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "0.9.1"
+pre-commit = "^4.0.1"
+pytest = "^8.3.4"
+
+[tool.ruff]
+line-length = 79
+exclude = ["migrations"]
+
+[tool.ruff.lint]
+ignore = ["RUF001", "B008", "RUF002", "RUF003"]
+select = [
+    "A", "B", "F", "I", "Q", "ASYNC", "N", "W", "UP", "T20", "SIM", "ANN", "PL",
+    "PT", "RET", "E", "S", "C4", "EM", "DTZ", "RUF", "TC", "ARG", "TID"
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402", "F401", "F403"] # unused imports
+"mixins.py" = ["N805", "ANN201"] # cls instead self
+"test_*.py" = ["ANN201", "S"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = [".", "src"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
