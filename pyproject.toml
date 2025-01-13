@@ -8,12 +8,18 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 httpx = "^0.28.1"
+fastapi = "^0.115.6"
+uvicorn = "^0.34.0"
+pydantic = "^2.10.5"
+asyncpg = "^0.30.0"
+loguru = "^0.7.3"
 
 
 [tool.poetry.group.dev.dependencies]
 ruff = "0.9.1"
 pre-commit = "^4.0.1"
 pytest = "^8.3.4"
+freezegun = "^1.5.1"
 
 [tool.ruff]
 line-length = 79
@@ -29,6 +35,7 @@ select = [
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402", "F401", "F403"] # unused imports
 "mixins.py" = ["N805", "ANN201"] # cls instead self
+"models.py" = ["N805", "ANN201"] # cls instead self
 "test_*.py" = ["ANN201", "S"]
 
 [tool.pytest.ini_options]
