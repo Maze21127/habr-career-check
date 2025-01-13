@@ -27,7 +27,6 @@ def parse_salary(salary: str) -> int | None:
 
 class HabrClient:
     def __init__(self, cookies: HabrCookies) -> None:
-        self._token_url = "https://career.habr.com/integrations/oauth/token"  # noqa: S105
         self.client = AsyncClient(cookies=cookies.model_dump(by_alias=True))
         self.url = "https://career.habr.com"
 
