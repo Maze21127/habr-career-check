@@ -23,12 +23,14 @@ async def main() -> None:
 
     client = HabrClient(cookies)
     for username in users:
-        user = await client.get_user_data(username)
+        with logger.catch():
+            user = await client.get_user_data(username)
         min_visited = await db.get_min_user_last_visited(username)
         if min_visited and min_visited[0][0] > user.last_visited:
             logger.warning(f"User {username} logged earlier")
             continue
-        await db.insert_user(user)
+        with logger.catch():
+            await db.insert_user(user)
 
 
 if __name__ == "__main__":
