@@ -29,7 +29,6 @@ async def main() -> None:
             logger.warning(f"User {username} logged earlier")
             continue
         await db.insert_user(user)
-        await db.insert_user(user)
 
 
 if __name__ == "__main__":
