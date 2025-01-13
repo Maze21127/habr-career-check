@@ -2,6 +2,7 @@ import json
 import re
 
 from httpx import AsyncClient
+from loguru import logger
 
 from src.models import HabrCareerUser, HabrCookies
 
@@ -32,7 +33,9 @@ class HabrClient:
 
     async def get_user_data(self, username: str) -> HabrCareerUser:
         page_data = await self.get_page_data(username)
-        return self.parse_page_data(page_data)
+        user = self.parse_page_data(page_data)
+        logger.info(f"Success fetched {username}")
+        return user
 
     async def get_page_data(self, username: str) -> str:
         url = f"{self.url}/{username}"
