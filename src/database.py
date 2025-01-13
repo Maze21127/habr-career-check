@@ -33,7 +33,8 @@ class Database:
             status varchar(100) NOT NULL,
             salary integer,
             salary_unit VARCHAR(2),
-            qualification VARCHAR(255) NOT NULL
+            qualification VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP default now()
         )
         """
         await connection.execute(query)
