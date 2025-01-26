@@ -1,5 +1,5 @@
 import asyncpg
-from asyncpg import UniqueViolationError
+from asyncpg import Record, UniqueViolationError
 from asyncpg.pool import PoolConnectionProxy
 from loguru import logger
 from pydantic import PostgresDsn
@@ -88,7 +88,7 @@ class Database:
         async with self.pool.acquire() as connection:
             return [res[0] for res in await connection.fetch(query)]
 
-    async def get_min_user_last_visited(self, username: str) -> None:
+    async def get_min_user_last_visited(self, username: str) -> list[Record]:
         query = (
             "SELECT min(last_visited) FROM habr_career_users "
             "WHERE username = $1 GROUP BY username "
